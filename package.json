@@ -1,0 +1,27 @@
+{
+  "name": "ecommerce-api",
+  "version": "1.0.0",
+  "description": "ecommerce node rest api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mahmoudsoliman/ecommerce-api.git"
+  },
+  "keywords": [
+    "node",
+    "ecommerce",
+    "api"
+  ],
+  "author": "Mahmoud Soliman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mahmoudsoliman/ecommerce-api/issues"
+  },
+  "homepage": "https://github.com/mahmoudsoliman/ecommerce-api#readme",
+  "dependencies": {
+    "standard": "^14.3.4"
+  }
+}
