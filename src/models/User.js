@@ -20,5 +20,8 @@ module.exports = function (sequelize) {
     }
   })
 
+  User.associate = function (models) {
+    models.User.hasMany(models.AccessToken)
+  }
   return User
 }

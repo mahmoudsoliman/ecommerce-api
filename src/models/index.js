@@ -1,12 +1,11 @@
 const { Sequelize } = require('sequelize')
 
-const sequelize = new Sequelize('mysql://user:pass@example.com:3306/inventory')
+const sequelize = new Sequelize('mysql://root:password@localhost:3306/inventory')
 
 const db = {
   User: require('./User')(sequelize),
-  Product: require('./Product')(sequelize)
+  Product: require('./Product')(sequelize),
+  AccessToken: require('./AccessToken')(sequelize)
 }
-
-sequelize.sync()
 
 module.exports = db

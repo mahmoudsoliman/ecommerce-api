@@ -1,8 +1,7 @@
 const _ = require('lodash')
 const Boom = require('boom')
 const bcrypt = require('bcryptjs')
-const { User } = require('../models')
-const { validator } = require('sequelize/types/lib/utils/validator-extras')
+const { User, AccessToken } = require('../models')
 
 const _validateNewUserAlreadyExists = async (email) => {
   const existingUser = await User.findOne({
@@ -23,13 +22,14 @@ const createUser = async ({firstName, lastName, email, password}) => {
     password: await bcrypt.hash(password, 10)
   })
 }
-const generateToken = async () => {
+
+const _generateToken = async () => {
   let token = await crypto.randomBytes(16)
   token = token.toString('hex')
-  const expiryDate = new Date(Date.now() + RESET_PASSWORD_TOKEN_EXPIRY_TIME)
+  const expirationDate = new Date(Date.now() + RESET_PASSWORD_TOKEN_EXPIRY_TIME)
   return {
     token,
-    expiryDate
+    expirationDate
   }
 }
 const authenticate = async ({email, password}) => {
@@ -40,8 +40,14 @@ const authenticate = async ({email, password}) => {
   if(_.isNil(user)) throw Boom.notFound('User not found')
   const isValidPassword = await bcrypt.compare(password, user.password)
   if(!isValidPassword) throw Boom.unauthorized('Wrong Credintils')
+
+  const newToken = await _generateToken()
+  const accessToken = await AccessToken.create(newToken)
+
+  return accessToken
 }
 
 module.exports = {
-  createUser
+  createUser,
+  authenticate
 }
