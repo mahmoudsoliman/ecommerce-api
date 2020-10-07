@@ -1,6 +1,7 @@
 const _ = require('lodash')
 const Boom = require('boom')
 const bcrypt = require('bcryptjs')
+const crypto = require('crypto')
 const { User, AccessToken } = require('../models')
 
 const _validateNewUserAlreadyExists = async (email) => {
@@ -26,7 +27,7 @@ const createUser = async ({firstName, lastName, email, password}) => {
 const _generateToken = async () => {
   let token = await crypto.randomBytes(16)
   token = token.toString('hex')
-  const expirationDate = new Date(Date.now() + RESET_PASSWORD_TOKEN_EXPIRY_TIME)
+  const expirationDate = new Date(Date.now() + 60*60*1000)
   return {
     token,
     expirationDate

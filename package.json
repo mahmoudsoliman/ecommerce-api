@@ -24,6 +24,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "boom": "^7.3.0",
+    "crypto": "^1.0.1",
     "express": "^4.17.1",
     "jest": "^26.5.2",
     "joi": "^17.2.1",

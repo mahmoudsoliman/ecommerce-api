@@ -11,7 +11,7 @@ describe('Create User Tests', async () => {
       password: "password"
     }
     const result = await createUser(userData)
-      
+
     expect(result).toHaveProperty('firstName', userData.firstName)
     expect(result).toHaveProperty('lastName', userData.lastName)
     expect(result).toHaveProperty('email', userData.email)
