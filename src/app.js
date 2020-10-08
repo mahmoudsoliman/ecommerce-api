@@ -4,7 +4,7 @@ const router = require('./routes')
 
 const app = express()
 
-app.set('port', process.env.PORT || 3000)
+app.set('port', 8080)
 
 app.use(router)
 
