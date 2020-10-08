@@ -1,4 +1,5 @@
-const Joi = require('joi');
+const Joi = require('joi')
+const { celebrate } = require('celebrate')
 
 const loginValidator = {
   body: Joi.object({
@@ -8,5 +9,5 @@ const loginValidator = {
 }
 
 module.exports = {
-  loginValidator
+  loginValidator: celebrate(loginValidator)
 }

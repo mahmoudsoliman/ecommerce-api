@@ -28,10 +28,15 @@ const login = async (req, res) => {
     password
   } = req.body
 
-  return authenticate({
+  const tokenObj = await authenticate({
     email,
     password
   })
+
+  return {
+    token: tokenObj.token,
+    expirationDate: tokenObj.expirationDate
+  }
 }
 
 module.exports = {
