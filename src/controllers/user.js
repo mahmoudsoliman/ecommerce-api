@@ -15,11 +15,11 @@ const signup = async (req, res) => {
     password
   })
 
-  return {
+  res.send({
     firstName: newUser.firstName,
     lastName: newUser.lastName,
     email: newUser.email
-  }
+  })
 }
 
 const login = async (req, res) => {
@@ -33,10 +33,10 @@ const login = async (req, res) => {
     password
   })
 
-  return {
+  res.send({
     token: tokenObj.token,
     expirationDate: tokenObj.expirationDate
-  }
+  })
 }
 
 module.exports = {

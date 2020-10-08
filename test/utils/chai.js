@@ -1,5 +1,5 @@
 const chai = require('chai')
-const app = require('../../src/app')
+const { app } = require('../../src/app')
 
 chai.use(require('chai-http'))
 chai.use(require('chai-asserttype'))
@@ -9,6 +9,9 @@ chai.use(require('dirty-chai'))
 chai.use(require('deep-equal-in-any-order'))
 chai.use(require('./chai-like'))
 
-chai.request(app).keepOpen()
+const request = chai.request(app).keepOpen()
 
-module.exports = chai
+module.exports = { 
+  ...chai,
+  request
+}
